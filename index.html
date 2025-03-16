@@ -26,7 +26,7 @@
             color: #333;
         }
         p {
-            color: #555;
+            color: #000000;
             text-align: left;
         }
         video {
@@ -34,6 +34,11 @@
             max-width: 300px;
             max-height: 600px;
             border-radius: 10px;
+        }
+        ul {
+            text-align: left;  /* Aligns list items to the left */
+            display: block;
+            margin-left: 20px; /* Adds some left spacing */
         }
     </style>
 </head>
@@ -44,15 +49,103 @@
         <h4>By Khaiber Amin and Nadav Weinberger.</h4>
       
         <h2>Project Description</h2>
-        <p>We developed a top-down co-op tank fighting game.</p>
+        <p>For our final embedded systems project, we created a top-down co-op tank shooting game. 
+          In the game, two players share control of a tank: one player controls
+          the tank's movement to avoid enemy projectiles using the CC3200's built-in accelerometer, 
+          while the other player uses a remote control to aim and shoot the tank's cannon.
+        </p>
+        <p>
+          The main objective of the game is to defeat as many enemy tanks as possible, 
+          while avoiding their projectiles. It is also possible to choose different difficulty settings, 
+          which affects the enemies projectile speed.
+        </p>
     </div>
 
   <div class="container">
-        <h2>Demo Video</h2>
-        <video controls>
-            <source src="final_demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+    <h2>Design</h2>
+    <h3>Functional Specs</h3>
+    <p>
+      When the program first starts, the title screen is displayed. 
+      Once the user presses any remote button, the main menu screen is displayed, 
+      where the user can start the game or set the difficulty. When the game is started, 
+      a green tank (the player) appears along with a red tank (the enemy) at a random location on screen.
+    </p> 
+    <p>
+      At this point, the enemy begins to fire projectiles at the player. 
+      If the player is hit by a projectile, the game ends and returns to the start screen. 
+      The speed of the enemy's projectiles is determined by the difficulty setting.
+    </p>
+    <p>
+      Tilting the CC3200 board causes the player tank to move around the screen, 
+      and pressing the remote control buttons controls the player's cannon: 
+      1 rotates it counterclockwise, 3 rotates it clockwise, and 2 shoots a projectile.
+    </p>
+    <p>
+      When an enemy is hit by a projectile, it is removed from the screen, 
+      the score increases by one, and a new enemy is spawned at a random location.
+    </p>
+
+    <h3>System Architecture</h3>
+    <p>
+      The system consists of the microcontroller, an OLED display connected to it 
+      via SPI, and and IR receiver connected through a GPIO pin. The built-in accelerometer 
+      communicates with the microcontroller using I2C.
+    </p>
+    
+  </div>
+
+  <div class="container">
+    <h2>Implementation</h2>
+  </div>
+
+  <div class="container">
+    <h2>Challenges</h2>
+    <p>
+      The biggest challenge we faced was connecting to the
+      internet. Initially, we planned to implement a system which
+      would upload the high score to the cloud, and retrieve it on
+      demand. Unfortunately, We encountered DNS-related issues
+      which proved to be impossible to solve during the allotted
+      time frame.
+    </p>
+    <p>
+      Another issue we encountered was our program's size.
+      Likely due to the size of the title screen art's bitmap array, the
+      code eventually became too large to be loaded to the RAM.
+      We were able to solve this problem by modifying the compiler
+      settings to optimize the program's size.
+    </p>
+  </div>
+
+  <div class="container">
+    <h2>Future Work</h2>
+    <p>
+      In the future, we would finish implementing the AWS
+      high-score functionality. Furthermore, we would like to add
+      movement to the enemy tanks, as well as different projectiles
+      types (e.g. exploding, homing projectiles).
+    </p>
+  </div>
+
+  <div class="container">
+    <h2>Bill of Materials</h2>
+    <ul text-align="left">
+      <li>CC3200 LaunchPad</li>
+      <li>Adafruit 128 x 128 Color OLED display</li>
+      <li>Breadboard and wires</li>
+      <li>AT&T S10-S3 Universal Remote</li>
+      <li>100Ω resistor</li>
+      <li>100μF capacitor</li>
+      <li>Vishay IR receiver module</li>
+    </ul>
+  </div>
+
+  <div class="container">
+      <h2>Demo Video</h2>
+      <video controls>
+          <source src="final_demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
+  </div>
 </body>
 </html>
