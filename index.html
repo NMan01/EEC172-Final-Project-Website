@@ -96,6 +96,38 @@
 
   <div class="container">
     <h2>Implementation</h2>
+    <p>
+      The OLED screen was coImplementation of the IR remote and sensor were similar
+      to Lab 3. The IR Receiver was connected to our breadboard
+      circuit with the VS and GND pins connected to the proper
+      lines of the breadboard, and the OUT pin connected to a free
+      GPIO pin on the CC3200 board using wires. A 100Ω resistor
+      between the VS pins of the IR receiver and micro controller,
+      as well as a 100μF capacitor between the VS and GND of the
+      IR receiver were used to protect against electrical over stress.
+      The circuit schematic can be seen in Figure 3. The OLED screen was connected to our breadboard with 7 wires in total,
+      and used SPI to communicate with the CC3200 board. Output
+      GPIO pins were used for the DC, OC, and RESET signals of
+      the OLED. The MOSI signal of the OLED was connected to
+      SPI DOUT (MOSI) on the launchpad, and the SCLK clock
+      signal was connected to the SPI CLK signal. Finally, the
+      Vin(+) and GND signals of the OLED were connected to the
+      3.3V and GND pins of the LaunchPad, respectively. In order to
+      make use of the built-in accelerometer of the CC3200 board,
+      Inter-Integrated Circuit (I2C) protocol was used. We made sure
+      to include the i2c_if.h file.
+    </p>
+    <p>
+      Implementing the basic game loop logic involves the use of a
+      constantly running while loop, which contained all the logic for
+      reading input data from the IR remote to implement player’s aiming
+      and firing mechanics, reading the accelerometer data to change the
+      player's x and y coordinates, updating the state of the enemy tank,
+      and checking if either the player tank or enemy tank have been hit by
+      a projectile. Every loop iteraion also updates the screen to show the
+      new state of the game to the player. This continuous looping allows
+      for the smooth real-time nature of the game
+    </p>
   </div>
 
   <div class="container">
@@ -120,10 +152,24 @@
   <div class="container">
     <h2>Future Work</h2>
     <p>
-      In the future, we would finish implementing the AWS
-      high-score functionality. Furthermore, we would like to add
-      movement to the enemy tanks, as well as different projectiles
-      types (e.g. exploding, homing projectiles).
+      In the future, we would finish implementing the AWS high-score
+      functionality. A possible upgrade to the high-score feature would be
+      a functioning cloud-based leaderboard. This would involve the player
+      inputting their name using the IR remote with multi-tap texting (like
+      Lab 3) and their scores being sent to AWS servers alongside their
+      name. These scores would then be ordered in a leaderboard, showing
+      the players with the highest scores.
+    </p>
+    <p>
+      Furthermore, we would like to add movement to the enemy
+      tanks, as well as different projectiles types (e.g. exploding, homing
+      projectiles).
+    </p>
+    <p>
+      If given additional resources, we could upgrade the hardware used
+      in the game by including additional peripherals, such as a joystick
+      for player movement, or a larger OLED screen to make the game
+      easier to view.
     </p>
   </div>
 
